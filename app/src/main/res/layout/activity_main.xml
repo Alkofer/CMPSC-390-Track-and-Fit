@@ -1,19 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#32022E">
+    <!--tools:context=".MainActivity">
+
+    <!- Title Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="THIS WEEKS WORKOUTS:"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Workouts"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Workout Image Placeholder -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="#FFFFFF"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Workout Buttons -->
+    <Button
+        android:id="@+id/btn_push"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Push"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
+        android:textColor="#000000"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_pull"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Pull"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
+        android:textColor="#000000"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_legs"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Legs"
+        android:textStyle="bold"
+        android:background="#FFFFFF"
+        android:textColor="#000000"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Second Workout Image Placeholder -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="#FFFFFF"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_marginBottom="20dp"/>
+
+</LinearLayout>
