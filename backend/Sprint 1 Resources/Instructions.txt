@@ -1,0 +1,5 @@
+We are going with node.js for backend + kotlin for front end, and using firebase to store data about users and handle authentication as well.
+
+To add a new user they just send me their email and I can add them to our google cloud portal, where they will have automatic access to the firebase console since I linked the two together.
+
+Once we actually start programming the project and linking frontend to backend to the server, we'll have more details on this.
