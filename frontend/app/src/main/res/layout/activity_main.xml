@@ -9,6 +9,49 @@
     android:background="#32022E"
     tools:context=".MainActivity">
 
+    <!-- Top Navigation Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#000000"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Menu Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:layout_marginEnd="10dp"/>
+
+        <!-- Search Bar -->
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Search..."
+            android:padding="8dp"
+            android:textColorHint="#CCCCCC"
+            android:textColor="#FFFFFF"/>
+
+        <!-- Notification Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_dialog_info"
+            android:layout_marginStart="10dp"/>
+
+        <!-- Share Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_share"
+            android:layout_marginStart="10dp"/>
+    </LinearLayout>
+
+
     <!-- Title Section -->
     <TextView
         android:layout_width="wrap_content"
