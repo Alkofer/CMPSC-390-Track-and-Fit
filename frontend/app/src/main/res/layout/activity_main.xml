@@ -29,7 +29,7 @@
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:background="@android:drawable/editbox_background"
             android:hint="Search..."
             android:padding="8dp"
@@ -118,5 +118,51 @@
         android:scaleType="centerInside"
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_marginBottom="20dp"/>
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#000000"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <!-- Heart Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/btn_star"
+            android:tint="#FFFFFF"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <!-- Search Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="#FFFFFF"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <!-- Info Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_dialog_info"
+            android:tint="#FFFFFF"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+
+        <!-- Notification Icon -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_popup_reminder"
+            android:tint="#FFFFFF"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+    </LinearLayout>
 
 </LinearLayout>
