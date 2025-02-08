@@ -133,7 +133,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/btn_star"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
@@ -142,7 +142,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_menu_search"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
@@ -151,7 +151,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_dialog_info"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
@@ -160,7 +160,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_popup_reminder"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
     </LinearLayout>
