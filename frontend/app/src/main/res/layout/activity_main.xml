@@ -36,18 +36,15 @@
             android:textColorHint="#CCCCCC"
             android:textColor="#FFFFFF"/>
 
-        <!-- Notification Icon -->
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/ic_dialog_info"
-            android:layout_marginStart="10dp"/>
-
-        <!-- Share Icon -->
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_share"
+        <!-- Login -->
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textStyle="bold"
+            android:background="#FFFFFF"
+            android:textColor="#000000"
             android:layout_marginStart="10dp"/>
     </LinearLayout>
 
@@ -133,7 +130,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/btn_star"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
@@ -142,7 +139,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_menu_search"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
@@ -151,7 +148,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_dialog_info"
-            android:tint="#FFFFFF"
+           app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
 
@@ -160,7 +157,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@android:drawable/ic_popup_reminder"
-            android:tint="#FFFFFF"
+            app:tint="#FFFFFF"
             android:layout_weight="1"
             android:layout_gravity="center"/>
     </LinearLayout>
