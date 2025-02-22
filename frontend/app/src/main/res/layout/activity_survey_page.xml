@@ -5,15 +5,90 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#32022E"
     tools:context=".SurveyPage">
 
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Name"
-        tools:layout_editor_absoluteX="91dp"
-        tools:layout_editor_absoluteY="304dp" />
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Email Input -->
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="297dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Enter Email"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Firstname Input -->
+        <EditText
+            android:id="@+id/Firstname"
+            android:layout_width="297dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Enter First Name"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Lastname Input -->
+        <EditText
+            android:id="@+id/Lastname"
+            android:layout_width="297dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Enter Last Name"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- DOB Input -->
+        <EditText
+            android:id="@+id/DOB"
+            android:layout_width="297dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Enter Date of Birth"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Weight Input -->
+        <EditText
+            android:id="@+id/weight"
+            android:layout_width="297dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Enter Weight"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Password Input -->
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="297dp"
+            android:layout_height="48dp"
+            android:background="@android:drawable/editbox_background"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#CCCCCC"
+            android:layout_marginBottom="16dp" />
+
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
