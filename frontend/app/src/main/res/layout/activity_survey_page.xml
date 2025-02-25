@@ -87,7 +87,16 @@
             android:textColorHint="#CCCCCC"
             android:layout_marginBottom="16dp" />
 
+        <Button
+            android:id="@+id/buttonSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="buttonSubmit"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="427dp" />
+
     </LinearLayout>
+
 
 
 
