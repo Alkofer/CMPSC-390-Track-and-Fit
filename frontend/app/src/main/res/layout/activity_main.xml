@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="#32022E"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <!-- Top Navigation Bar -->
     <LinearLayout

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "928052892117",
+    "project_id": "track-and-fit-449302",
+    "storage_bucket": "track-and-fit-449302.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928052892117:android:bc6351243f8b380daaed5c",
+        "android_client_info": {
+          "package_name": "com.example.homepage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKM7gy8YVuAjlVOGvvF8uxUe0Qw6eDjEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
