@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#32022E"
-    tools:context=".SurveyPage">
+    tools:context=".ui.SurveyPage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,16 +63,6 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Weight Input -->
-        <EditText
-            android:id="@+id/weight"
-            android:layout_width="297dp"
-            android:layout_height="48dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Enter Weight"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#CCCCCC"
-            android:layout_marginBottom="16dp" />
 
         <!-- Password Input -->
         <EditText

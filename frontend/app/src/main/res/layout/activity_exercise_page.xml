@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#32022E"
+    android:orientation="vertical"
+    tools:context=".ExercisePage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="34dp"
+        android:background="#000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/Workout_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/mainButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="<"
+            tools:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="435dp"
+        android:layout_height="97dp"
+        android:background="#161313"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="576dp">
+
+        <Button
+            android:id="@+id/Finish_Button"
+            android:layout_width="148dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="233dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="54dp"
+            android:layout_marginBottom="8dp"
+            android:text="Finish"
+            tools:text="Finish" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/Workout_Text"
+        android:layout_width="314dp"
+        android:layout_height="90dp"
+        android:text="(Insert Workout Name Here)"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="150dp" />
+
+    <TextView
+        android:id="@+id/Workout_Desc"
+        android:layout_width="342dp"
+        android:layout_height="204dp"
+        android:text="Description of Exercise"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="257dp"
+        tools:layout_marginTop="8dp"
+        tools:textAlignment="center"
+        tools:textColor="#FFFF" />
+
+    <TextView
+        android:id="@+id/Sets_Text"
+        android:layout_width="213dp"
+        android:layout_height="56dp"
+        android:text="Sets Done: 0"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="531dp"
+        tools:textAlignment="center"
+        tools:textColor="#FFFF"
+        tools:textSize="24sp" />
+
+    <Button
+        android:id="@+id/SetPlus_Button"
+        android:layout_width="148dp"
+        android:layout_height="82dp"
+        android:text="Another Set"
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="584dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

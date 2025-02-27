@@ -5,6 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WorkoutList">
+    tools:context=".ui.WorkoutList">
 
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- RecyclerView where the list of workouts will appear -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/workoutRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Finish button at the bottom -->
+        <Button
+            android:id="@+id/btnFinish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:text="Finish" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
