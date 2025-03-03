@@ -10,12 +10,6 @@
     android:id="@+id/main">
 
     <!-- Title -->
-    <Button
-        android:id="@+id/placehold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Placeholder" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="340dp"

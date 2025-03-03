@@ -22,12 +22,6 @@ class MainActivity : AppCompatActivity() {
         }
         val userId = currentUser.uid
 
-        val button = findViewById<Button>(R.id.btn_login);
-        button.setOnClickListener {
-            val intent = Intent(this, LoginPage::class.java)
-            startActivity(intent)
-        }
-
         findViewById<Button>(R.id.btn_push).setOnClickListener { launchWorkoutList("Push", userId) }
         findViewById<Button>(R.id.btn_pull).setOnClickListener { launchWorkoutList("Pull", userId) }
         findViewById<Button>(R.id.btn_legs).setOnClickListener { launchWorkoutList("Legs", userId) }
