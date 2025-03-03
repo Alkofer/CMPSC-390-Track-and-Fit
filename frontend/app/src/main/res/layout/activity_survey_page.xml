@@ -15,79 +15,151 @@
         android:padding="16dp">
 
         <!-- Email Input -->
+        <TextView
+            android:id="@+id/Welcome"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Welcome to Track and Fit!"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+
+        <EditText
+            android:id="@+id/editTextText7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="29sp"
+            android:text="Please Complete the Survey"/>
+
+        <EditText
+            android:id="@+id/emailtext"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:ems="10"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:textSize="25dp"
+            android:text="Enter Email:" />
+
         <EditText
             android:id="@+id/email"
-            android:layout_width="297dp"
-            android:layout_height="wrap_content"
+            android:layout_width="431dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:hint="Enter Email"
             android:padding="10dp"
             android:textColor="#000000"
-            android:textColorHint="#CCCCCC"
-            android:layout_marginBottom="16dp" />
+            android:textColorHint="#CCCCCC" />
 
         <!-- Firstname Input -->
         <EditText
-            android:id="@+id/Firstname"
-            android:layout_width="297dp"
+            android:id="@+id/firstnametext"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="25dp"
+            android:text="Enter First Name:"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/Firstname"
+            android:layout_width="426dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:hint="Enter First Name"
             android:padding="10dp"
             android:textColor="#000000"
-            android:textColorHint="#CCCCCC"
-            android:layout_marginBottom="16dp" />
+            android:textColorHint="#CCCCCC" />
 
         <!-- Lastname Input -->
         <EditText
-            android:id="@+id/Lastname"
-            android:layout_width="297dp"
+            android:id="@+id/lastnametext"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="25dp"
+            android:text="Enter Last Name:"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/Lastname"
+            android:layout_width="431dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:hint="Enter Last Name"
             android:padding="10dp"
             android:textColor="#000000"
-            android:textColorHint="#CCCCCC"
-            android:layout_marginBottom="16dp" />
+            android:textColorHint="#CCCCCC" />
 
         <!-- DOB Input -->
         <EditText
-            android:id="@+id/DOB"
-            android:layout_width="297dp"
+            android:id="@+id/DOBtext"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="25dp"
+            android:text="Enter Date of Birth:"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/DOB"
+            android:layout_width="428dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:hint="Enter Date of Birth"
             android:padding="10dp"
             android:textColor="#000000"
-            android:textColorHint="#CCCCCC"
-            android:layout_marginBottom="16dp" />
+            android:textColorHint="#CCCCCC" />
 
         <!-- Weight Input -->
 
         <!-- Password Input -->
         <EditText
-            android:id="@+id/et_password"
-            android:layout_width="297dp"
+            android:id="@+id/passwordtext"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="25dp"
+            android:text="Enter Password:"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="428dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
             android:background="@android:drawable/editbox_background"
             android:hint="Enter Password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="#000000"
-            android:textColorHint="#CCCCCC"
-            android:layout_marginBottom="16dp" />
+            android:textColorHint="#CCCCCC" />
 
         <Button
             android:id="@+id/buttonSubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="buttonSubmit"
+            android:layout_width="157dp"
+            android:layout_height="59dp"
+            android:layout_gravity="center"
+            android:text="Submit Survey"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="427dp" />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
