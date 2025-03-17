@@ -15,6 +15,12 @@
         android:theme="@style/Theme.HomePage"
         tools:targetApi="31">
         <activity
+            android:name=".ui.Achievement"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Acheivements"
+            android:exported="false" />
+        <activity
             android:name=".Leaderboard"
             android:exported="false" />
         <activity

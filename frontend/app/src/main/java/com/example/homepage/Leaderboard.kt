@@ -2,55 +2,60 @@ package com.example.homepage
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.homepage.model.User
 
 class Leaderboard : AppCompatActivity() {
 
+    private lateinit var leaderboardRecyclerView: RecyclerView
+    private lateinit var leaderboardAdapter: LeaderboardAdapter
 
-
-
+    private val users = listOf(
+        User("Alice", 120, 50, 30),
+        User("Bob", 100, 70, 40),
+        User("Charlie", 150, 60, 20),
+        User("David", 90, 80, 50)
+    )
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_leaderboard)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        leaderboardRecyclerView = findViewById(R.id.leaderboardRecyclerView)
+        leaderboardRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        leaderboardAdapter = LeaderboardAdapter(users)
+        leaderboardRecyclerView.adapter = leaderboardAdapter
+
         val mostActive = findViewById<Button>(R.id.MostActBtn)
         val mostWorkouts = findViewById<Button>(R.id.workoutsBtn)
         val longestStreak = findViewById<Button>(R.id.LongStreakBtn)
 
-
-        mostActive.setOnClickListener(){
-            mostActiveView()
+        mostActive.setOnClickListener {
+            updateLeaderboard("mostActive")
         }
-        mostWorkouts.setOnClickListener(){
-            mostWorkoutsView()
+        mostWorkouts.setOnClickListener {
+            updateLeaderboard("mostWorkouts")
         }
-        longestStreak.setOnClickListener(){
-            longestStreakView()
+        longestStreak.setOnClickListener {
+            updateLeaderboard("longestStreak")
         }
-    }
-    //function for buttons
-    private fun mostActiveView(){
 
-    }
-
-    private fun mostWorkoutsView(){
-
+        // Default leaderboard
+        updateLeaderboard("mostActive")
     }
 
-    private fun longestStreakView(){
-
+    private fun updateLeaderboard(type: String) {
+        val sortedUsers = when (type) {
+            "mostActive" -> users.sortedByDescending { it.mostActive }
+            "mostWorkouts" -> users.sortedByDescending { it.mostWorkouts }
+            "longestStreak" -> users.sortedByDescending { it.longestStreak }
+            else -> users
+        }
+        leaderboardAdapter.updateData(sortedUsers, type)
     }
-
 }
