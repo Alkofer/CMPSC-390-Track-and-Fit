@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
+import com.example.homepage.Leaderboard
 import com.example.homepage.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn_push).setOnClickListener { launchWorkoutList("Push", userId) }
         findViewById<Button>(R.id.btn_pull).setOnClickListener { launchWorkoutList("Pull", userId) }
         findViewById<Button>(R.id.btn_legs).setOnClickListener { launchWorkoutList("Legs", userId) }
+        val leaderboardButton = findViewById<Button>(R.id.leaderboard)
+        leaderboardButton.setOnClickListener {
+            val intent = Intent(this, Leaderboard::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun launchWorkoutList(workoutType: String, userId: String) {
