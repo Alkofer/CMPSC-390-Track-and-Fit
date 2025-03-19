@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
 import com.example.homepage.Leaderboard
+import com.example.homepage.ui.Achievement
 import com.example.homepage.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -29,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         val leaderboardButton = findViewById<Button>(R.id.leaderboard)
         leaderboardButton.setOnClickListener {
             val intent = Intent(this, Leaderboard::class.java)
+            startActivity(intent)
+        }
+
+        val achievementsButton = findViewById<Button>(R.id.achievements)
+        achievementsButton.setOnClickListener {
+            val intent = Intent(this, Achievement::class.java)
             startActivity(intent)
         }
     }

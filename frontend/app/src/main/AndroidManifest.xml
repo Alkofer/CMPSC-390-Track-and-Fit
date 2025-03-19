@@ -14,12 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomePage"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.Achievement"
-            android:exported="false" />
-        <activity
-            android:name=".ui.Acheivements"
-            android:exported="false" />
+        
         <activity
             android:name=".Leaderboard"
             android:exported="false" />
@@ -29,6 +24,10 @@
         <activity
             android:name=".ui.SurveyPage"
             android:exported="true" />
+        <activity
+            android:name=".ui.Achievement"
+            android:label ="Achievement"
+            android:exported="false"/>
         <activity
             android:name=".ui.LoginPage"
             android:exported="true">
