@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Achievement::class.java)
             startActivity(intent)
         }
+        val ProfileButton = findViewById<Button>(R.id.btn_profile)
+        ProfileButton.setOnClickListener {
+            val intent = Intent(this, Profile::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun launchWorkoutList(workoutType: String, userId: String) {
