@@ -15,6 +15,8 @@
         android:theme="@style/Theme.HomePage"
         tools:targetApi="31">
         
+        <activity android:name=".ui.RemoveBlacklist"
+        
         <activity
             android:name=".Leaderboard"
             android:exported="false" />
