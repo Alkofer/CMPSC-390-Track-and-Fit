@@ -38,6 +38,13 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Achievement::class.java)
             startActivity(intent)
         }
+
+        val blacklistButton = findViewById<Button>(R.id.blacklist)
+        blacklistButton.setOnClickListener {
+            val intent = Intent(this, RemoveBlacklist::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun launchWorkoutList(workoutType: String, userId: String) {
