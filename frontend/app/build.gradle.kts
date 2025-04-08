@@ -39,9 +39,14 @@ android {
 
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation (platform("com.google.firebase:firebase-bom:32.7.3")) // Check latest version
+    implementation ("com.google.firebase:firebase-functions-ktx")
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
+    implementation ("com.android.volley:volley:1.2.1")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-functions")
+    implementation("com.google.firebase:firebase-auth:21.0.1")
+    implementation("com.google.firebase:firebase-firestore:24.0.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -52,6 +57,8 @@ dependencies {
     implementation("androidx.activity:activity:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation(libs.firebase.auth.ktx)
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation("androidx.privacysandbox.tools:tools-core:1.0.0-alpha13")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
