@@ -223,9 +223,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/username"
+                android:id="@+id/DOB"
                 android:layout_weight="1"
-                android:text="Id"
+                android:text="DOB"
                 android:textStyle="bold"
                 android:textColor="@color/lavender"
                 android:textSize="18sp"/>
@@ -234,7 +234,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/profileUsername"
+                android:id="@+id/profileDOB"
                 android:text=""
                 android:layout_weight="1"
                 android:textAlignment="viewEnd"
