@@ -26,9 +26,10 @@ class Profile : AppCompatActivity() {
         val profileLName = findViewById<TextView>(R.id.profileLastName)
         val profileEmail = findViewById<TextView>(R.id.profileEmail)
         val profileUserId = findViewById<TextView>(R.id.titleUsername)
-        val profileUsername = findViewById<TextView>(R.id.profileUsername)
+        //val profileUsername = findViewById<TextView>(R.id.profileUsername)
         val profileBio = findViewById<TextView>(R.id.bioEditText)
         val editButton = findViewById<TextView>(R.id.editButton)
+        val profileDOB = findViewById<TextView>(R.id.profileDOB)
 
         // Initialize Firestore + Auth
         db = FirebaseFirestore.getInstance()
@@ -53,14 +54,17 @@ class Profile : AppCompatActivity() {
                 val firstName = document.getString("firstName") ?: "N/A"
                 val lastName = document.getString("lastName") ?: "N/A"
                 val bio = document.getString("bio") ?: "No bio added yet."
+                val dob = document.getString("dob") ?: "N/A"
 
 
                 profileName.text = "$firstName $lastName"
                 profileFName.text = firstName
                 profileLName.text = lastName
-                profileUsername.text = userId
+                //profileUsername.text = userId
                 profileUserId.text = userId
                 profileBio.text = bio
+                profileDOB.text = dob
+
             } else {
                 Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
             }
