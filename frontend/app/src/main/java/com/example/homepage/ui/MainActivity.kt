@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
 import com.example.homepage.Leaderboard
-import com.example.homepage.ui.Achievement
 import com.example.homepage.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -38,11 +37,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Achievement::class.java)
             startActivity(intent)
         }
-        val ProfileButton = findViewById<Button>(R.id.btn_profile)
-        ProfileButton.setOnClickListener {
+
+        val profileButton = findViewById<Button>(R.id.btn_profile)
+        profileButton.setOnClickListener {
             val intent = Intent(this, Profile::class.java)
+            intent.putExtra("userId", userId) // pass correct userId
             startActivity(intent)
         }
+
+
     }
 
     private fun launchWorkoutList(workoutType: String, userId: String) {
