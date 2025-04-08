@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profilebkg">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/profileImg"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleName"
+        android:layout_marginTop="10dp"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/profileImg"
+        app:layout_constraintStart_toStartOf="@id/profileImg"
+        app:layout_constraintTop_toBottomOf="@id/profileImg"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleUsername"
+        android:text="username"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/titleName"
+        app:layout_constraintStart_toStartOf="@id/titleName"
+        app:layout_constraintTop_toBottomOf="@id/titleName"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:background="@drawable/white_background"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleUsername">
+
+
+        <!-- Bio Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:gravity="center">
+
+
+            <!-- Bio Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bio"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+
+            <!-- Bio Edit Text -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bioEditText"
+                android:hint="Write your bio here"
+                android:textColor="@color/grey"
+                android:textSize="16sp"
+                android:background="@drawable/edit_text_bg"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="top|start"
+                android:maxLines="5"
+                android:scrollbars="vertical"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:layout_weight="1"
+                android:text="First Name"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileFirstName"
+                android:text=""
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/grey"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+
+        <!-- Last Name Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lastName"
+                android:layout_weight="1"
+                android:text="Last Name"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileLastName"
+                android:text=""
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/grey"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                android:layout_weight="1"
+                android:text="@string/email"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileEmail"
+                android:text=""
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/grey"
+                android:textSize="18sp"/>
+
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/DOB"
+                android:layout_weight="1"
+                android:text="DOB"
+                android:textStyle="bold"
+                android:textColor="@color/lavender"
+                android:textSize="18sp"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileDOB"
+                android:text=""
+                android:layout_weight="1"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/grey"
+                android:textSize="18sp"/>
+
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:alpha="0.5"
+            android:background="@color/lavender"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="8dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:id="@+id/editButton"
+        android:gravity="center"
+        android:text="Back To The Workout"
+        android:textSize="18sp"
+        app:cornerRadius = "20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/linearLayout"
+        app:layout_constraintStart_toStartOf="@id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

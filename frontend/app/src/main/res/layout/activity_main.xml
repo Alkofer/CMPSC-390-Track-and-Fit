@@ -36,14 +36,14 @@
             android:textColorHint="#CCCCCC"
             android:textColor="#FFFFFF"/>
 
-<ImageView
-    android:layout_width="36dp"
-    android:layout_height="36dp"
-    android:layout_marginStart="10dp"
-    android:src="@android:drawable/ic_menu_myplaces"
-    android:scaleType="centerCrop"
-    android:background="@android:drawable/dialog_holo_light_frame"/>
-
+        <Button
+            android:id="@+id/btn_profile"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:background="@android:drawable/ic_menu_myplaces"
+            android:tint="#FFFFFF"
+            android:scaleType="centerCrop"/>
     </LinearLayout>
 
     <!-- Title Section -->
