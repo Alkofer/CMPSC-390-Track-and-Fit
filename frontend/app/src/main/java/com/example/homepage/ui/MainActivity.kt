@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
+import com.example.homepage.ExercisePage
 import com.example.homepage.R
 import com.google.firebase.auth.FirebaseAuth
 
@@ -28,13 +29,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val button2 = findViewById<Button>(R.id.btn_push);
+        button.setOnClickListener {
+            val intent = Intent(this, ExercisePage::class.java)
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.btn_push).setOnClickListener { launchWorkoutList("Push", userId) }
         findViewById<Button>(R.id.btn_pull).setOnClickListener { launchWorkoutList("Pull", userId) }
         findViewById<Button>(R.id.btn_legs).setOnClickListener { launchWorkoutList("Legs", userId) }
     }
 
     private fun launchWorkoutList(workoutType: String, userId: String) {
-        val intent = Intent(this, WorkoutList::class.java).apply {
+        val intent = Intent(this, ExercisePage::class.java).apply {
             putExtra("WORKOUT_TYPE", workoutType)
             putExtra("USER_ID", userId)
         }

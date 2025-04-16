@@ -15,11 +15,20 @@
         android:theme="@style/Theme.HomePage"
         tools:targetApi="31">
         <activity
+            android:name=".Achievement"
+            android:exported="false" />
+        <activity
+            android:name=".Leaderboard"
+            android:exported="false" />
+        <activity
+            android:name=".ExercisePage"
+            android:exported="false" />
+        <activity
             android:name=".ui.WorkoutList"
             android:exported="false" />
         <activity
             android:name=".ui.SurveyPage"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.LoginPage"
             android:exported="true">
@@ -31,7 +40,7 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
