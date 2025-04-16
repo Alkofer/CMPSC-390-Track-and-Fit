@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.example.homepage.Leaderboard
 import com.example.homepage.R
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_LONG).show()
             return
         }
+
         val userId = currentUser.uid
 
         findViewById<Button>(R.id.btn_push).setOnClickListener { launchWorkoutList("Push", userId) }
@@ -50,6 +52,12 @@ class MainActivity : AppCompatActivity() {
         profileButton.setOnClickListener {
             val intent = Intent(this, Profile::class.java)
             intent.putExtra("userId", userId) // pass correct userId
+            startActivity(intent)
+        }
+
+        val friendsListBtn = findViewById<Button>(R.id.friendsListBtn)
+        friendsListBtn.setOnClickListener {
+            val intent = Intent(this, FriendsList::class.java)
             startActivity(intent)
         }
 

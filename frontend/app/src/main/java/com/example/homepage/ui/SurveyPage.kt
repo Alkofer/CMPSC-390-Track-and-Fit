@@ -11,6 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.homepage.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.firestore
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -88,11 +92,10 @@ class SurveyPage : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 val responseBody = response.body?.string()
                 runOnUiThread {
-                    if (response.isSuccessful) {
+                    if (response.isSuccessful){
                         Log.d("Signup","User Created Successfully")
                         Toast.makeText(this@SurveyPage, "User created", Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@SurveyPage, LoginPage::class.java)
-                        startActivity(intent)
+                        loginUser(email = email, password = password)
                         finish()
                     } else {
                         Log.e("Signup",responseBody.toString())
@@ -102,4 +105,59 @@ class SurveyPage : AppCompatActivity() {
             }
         })
     }
+
+    private fun addToFriendsList(){
+        Log.d("Signup","Friends List Start")
+        val etEmail = findViewById<EditText>(R.id.email)
+        val etFirstName = findViewById<EditText>(R.id.Firstname)
+        val etLastName = findViewById<EditText>(R.id.Lastname)
+
+        val email = etEmail.text.toString().trim()
+        val firstName = etFirstName.text.toString().trim()
+        val lastName = etLastName.text.toString().trim()
+
+        val letters = ('A'..'Z').shuffled().take(3).joinToString("")
+        val numbers = (100..999).random().toString()
+
+        val friendCode = letters+numbers
+
+        val id = FirebaseAuth.getInstance().currentUser?.uid.toString()
+
+        val json =  hashMapOf(
+            "userId" to id,
+            "email" to email,
+            "firstName" to firstName,
+            "lastName" to lastName,
+            "friendCode" to friendCode
+        )
+
+        Log.d("Signup", "json: $json")
+
+        val userDocRef = Firebase.firestore.collection("friendsList").document(id)
+        userDocRef.set(json)
+            .addOnSuccessListener {
+                Log.d("Signup", "Success Saving")
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Log.e("Signup", "Failed saving to collection $e")
+
+                Toast.makeText(this, "Failed to update blacklist: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun loginUser(email: String, password: String) {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Login successful", Toast.LENGTH_LONG).show()
+                    addToFriendsList()
+
+                } else {
+                    Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
+
 }
