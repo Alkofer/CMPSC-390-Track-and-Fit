@@ -10,6 +10,7 @@
     tools:context=".ExercisePage">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="60dp"
@@ -28,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:text="<"
+            android:text="Back"
             tools:textSize="16sp" />
     </LinearLayout>
 
@@ -36,9 +37,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="435dp"
         android:layout_height="97dp"
+        android:layout_marginBottom="57dp"
         android:background="#161313"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="576dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/Finish_Button"
@@ -57,20 +60,26 @@
         android:id="@+id/Workout_Text"
         android:layout_width="314dp"
         android:layout_height="90dp"
-        android:text="(Insert Workout Name Here)"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="49dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="48dp"
-        tools:layout_editor_absoluteY="150dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <TextView
         android:id="@+id/Workout_Desc"
         android:layout_width="342dp"
         android:layout_height="204dp"
-        android:text="Description of Exercise"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="257dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Workout_Text"
         tools:layout_marginTop="8dp"
         tools:textAlignment="center"
         tools:textColor="#FFFF" />
@@ -79,9 +88,12 @@
         android:id="@+id/Sets_Text"
         android:layout_width="213dp"
         android:layout_height="56dp"
-        android:text="Sets Done: 0"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="531dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="99dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Workout_Desc"
         tools:textAlignment="center"
         tools:textColor="#FFFF"
         tools:textSize="24sp" />
@@ -90,8 +102,10 @@
         android:id="@+id/SetPlus_Button"
         android:layout_width="148dp"
         android:layout_height="82dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginBottom="8dp"
         android:text="Another Set"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="584dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
