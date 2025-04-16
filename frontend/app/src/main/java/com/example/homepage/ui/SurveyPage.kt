@@ -2,6 +2,7 @@ package com.example.homepage.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -88,11 +89,13 @@ class SurveyPage : AppCompatActivity() {
                 val responseBody = response.body?.string()
                 runOnUiThread {
                     if (response.isSuccessful) {
+                        Log.d("Signup","User Created Successfully")
                         Toast.makeText(this@SurveyPage, "User created", Toast.LENGTH_LONG).show()
                         val intent = Intent(this@SurveyPage, LoginPage::class.java)
                         startActivity(intent)
                         finish()
                     } else {
+                        Log.e("Signup",responseBody.toString())
                         Toast.makeText(this@SurveyPage, "Error: $responseBody", Toast.LENGTH_LONG).show()
                     }
                 }
