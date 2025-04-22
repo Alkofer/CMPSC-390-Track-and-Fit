@@ -10,13 +10,26 @@ import com.example.homepage.R
 import com.example.homepage.model.Workout
 
 class WorkoutAdapter(
-    private var workouts: List<Workout>,
     private val listener: OnWorkoutActionListener
 ) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
+
+    private val items = mutableListOf<Workout>()
 
     interface OnWorkoutActionListener {
         fun onLikeClicked(workout: Workout)
         fun onDislikeClicked(workout: Workout)
+    }
+
+    fun setData(newList: List<Workout>) {
+        items.clear()
+        items.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    inner class WorkoutViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvName: TextView   = view.findViewById(R.id.tvWorkoutName)
+        val btnLike: Button    = view.findViewById(R.id.btnLike)
+        val btnDislike: Button = view.findViewById(R.id.btnDislike)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutViewHolder {
@@ -26,31 +39,16 @@ class WorkoutAdapter(
     }
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
-        holder.bind(workouts[position], listener)
-    }
+        val workout = items[position]
+        holder.tvName.text = workout.name
 
-    override fun getItemCount(): Int = workouts.size
-
-    fun setData(newWorkouts: List<Workout>) {
-        workouts = newWorkouts
-        notifyDataSetChanged()
-    }
-
-    class WorkoutViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvWorkoutName: TextView = itemView.findViewById(R.id.tvWorkoutName)
-        private val btnLike: Button = itemView.findViewById(R.id.btnLike)
-        private val btnDislike: Button = itemView.findViewById(R.id.btnDislike)
-
-        fun bind(workout: Workout, listener: OnWorkoutActionListener) {
-            tvWorkoutName.text = workout.name
-
-            btnLike.setOnClickListener {
-                listener.onLikeClicked(workout)
-            }
-
-            btnDislike.setOnClickListener {
-                listener.onDislikeClicked(workout)
-            }
+        holder.btnLike.setOnClickListener {
+            listener.onLikeClicked(workout)
+        }
+        holder.btnDislike.setOnClickListener {
+            listener.onDislikeClicked(workout)
         }
     }
+
+    override fun getItemCount(): Int = items.size
 }

@@ -28,60 +28,60 @@ import org.json.JSONObject
 
 
 class WorkoutList : AppCompatActivity(), WorkoutAdapter.OnWorkoutActionListener {
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var workoutAdapter: WorkoutAdapter
-
     private val dislikedWorkouts = mutableSetOf<String>()
 
     private lateinit var workoutType: String
     private lateinit var userId: String
 
     private val getRoutineUrl = "https://getworkoutroutine-wk7ebpefeq-uc.a.run.app"
-
+    private val updateAchievementUrl = "https://updateuserachievement-wk7ebpefeq-uc.a.run.app"
+    private val getAchievementsUrl = "https://getuserachievements-wk7ebpefeq-uc.a.run.app"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_workout_list)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            val sys = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(sys.left, sys.top, sys.right, sys.bottom)
             insets
         }
 
         workoutType = intent.getStringExtra("WORKOUT_TYPE") ?: ""
-        userId = intent.getStringExtra("USER_ID") ?: ""
+        userId  = intent.getStringExtra("USER_ID") ?: ""
         if (userId.isEmpty()) {
             Toast.makeText(this, "User ID not found.", Toast.LENGTH_LONG).show()
-            finish()
-            return
+            finish(); return
         }
 
         recyclerView = findViewById(R.id.workoutRecyclerView)
-        workoutAdapter = WorkoutAdapter(emptyList(), this)
+        workoutAdapter = WorkoutAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = workoutAdapter
+        recyclerView.adapter  = workoutAdapter
 
         findViewById<Button>(R.id.btnFinish).setOnClickListener { finishRoutine() }
 
         fetchWorkouts(workoutType)
-
     }
+
     private fun fetchWorkouts(workoutType: String) {
         dislikedWorkouts.clear()
 
         val json = """
-        {
-            "userId": "$userId",
-            "workoutType": "$workoutType"
-        }
-    """.trimIndent()
+            {
+              "userId": "$userId",
+              "workoutType": "$workoutType"
+            }
+        """.trimIndent()
 
-        val mediaType = "application/json; charset=utf-8".toMediaType()
-        val requestBody = json.toRequestBody(mediaType)
+        val body = json.toRequestBody("application/json; charset=utf-8".toMediaType())
         val request = Request.Builder()
             .url(getRoutineUrl)
-            .post(requestBody)
+            .post(body)
             .build()
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
@@ -92,59 +92,52 @@ class WorkoutList : AppCompatActivity(), WorkoutAdapter.OnWorkoutActionListener 
             }
 
             override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-                android.util.Log.d("WorkoutList", "Response body: $body")
+                val text = response.body?.string()
+                Log.d("WorkoutList", text ?: "no-body")
 
                 if (!response.isSuccessful) {
                     runOnUiThread {
-                        Toast.makeText(this@WorkoutList, "Error: $body", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@WorkoutList, "Error: $text", Toast.LENGTH_LONG).show()
                     }
                     return
                 }
 
                 try {
-                    val jsonObject = JSONObject(body ?: "")
-                    if (!jsonObject.has("workouts")) {
-                        runOnUiThread {
-                            Toast.makeText(this@WorkoutList, "No workouts found in response.", Toast.LENGTH_LONG).show()
-                        }
-                        return
-                    }
-                    val workoutsArray = jsonObject.getJSONArray("workouts")
-                    val workoutList = mutableListOf<Workout>()
-                    for (i in 0 until workoutsArray.length()) {
-                        val item = workoutsArray.getJSONObject(i)
-                        val id = item.getString("id")
-                        val name = item.optString("name", "Unnamed Workout")
-                        val muscleGroup = item.optString("muscleGroup", "")
-                        workoutList.add(Workout(id, name, muscleGroup))
+                    val arr = JSONObject(text ?: "{}").getJSONArray("workouts")
+                    val list = mutableListOf<Workout>()
+                    for (i in 0 until arr.length()) {
+                        val obj = arr.getJSONObject(i)
+                        list += Workout(
+                            id = obj.getString("id"),
+                            name = obj.optString("name", "Unnamed Workout"),
+                            muscleGroup = obj.optString("muscleGroup", "")
+                        )
                     }
                     runOnUiThread {
-                        workoutAdapter.setData(workoutList)
+                        workoutAdapter.setData(list)
                     }
                 } catch (ex: Exception) {
-                    android.util.Log.e("WorkoutList", "JSON Parsing error", ex)
-                    runOnUiThread {
-                        Toast.makeText(this@WorkoutList, "Parsing error: ${ex.message}", Toast.LENGTH_LONG).show()
-                    }
+                    Log.e("WorkoutList", "JSON error", ex)
                 }
             }
         })
     }
 
     override fun onLikeClicked(workout: Workout) {
-        Toast.makeText(this, "Liked: ${workout.name}", Toast.LENGTH_SHORT).show()
-
     }
 
     override fun onDislikeClicked(workout: Workout) {
         dislikedWorkouts.add(workout.id)
-        Toast.makeText(this, "Disliked: ${workout.name}", Toast.LENGTH_SHORT).show()
     }
 
     private fun finishRoutine() {
+        fetchUserAchievements()
+
+        updateUserAchievementProgress("first_workout")
+        updateUserAchievementProgress("first_steps")
+        updateUserAchievementProgress("second_workout")
+
         if (dislikedWorkouts.isEmpty()) {
-            Toast.makeText(this, "Workout finished! No workouts were disliked.", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
@@ -152,11 +145,95 @@ class WorkoutList : AppCompatActivity(), WorkoutAdapter.OnWorkoutActionListener 
         val userDocRef = Firebase.firestore.collection("users").document(userId)
         userDocRef.update("blacklistedWorkouts", FieldValue.arrayUnion(*dislikedWorkouts.toTypedArray()))
             .addOnSuccessListener {
-                Toast.makeText(this, "Workout finished! Blacklist updated.", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Failed to update blacklist: ${e.message}", Toast.LENGTH_LONG).show()
+    }
+
+    private fun fetchUserAchievements() {
+        val url = "$getAchievementsUrl?userId=$userId"
+        val request = Request.Builder()
+            .url(url)
+            .get()
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+
             }
+
+            override fun onResponse(call: Call, response: Response) {
+                val jsonData = response.body?.string()
+                if (response.isSuccessful) {
+                    Log.d("WorkoutList", "Achievements JSON: $jsonData")
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this@WorkoutList, "Error: ${response.code}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+    private fun updateUserAchievementProgress(achievementId: String) {
+        val achievementDocRef = Firebase.firestore
+            .collection("users")
+            .document(userId)
+            .collection("achievements")
+            .document(achievementId)
+
+        achievementDocRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val currentProgress = (document.getLong("progress") ?: 0L).toInt()
+                    val finishCountField = document.getLong("finishCount") ?: 0L
+                    val target = if (finishCountField == 0L) {
+                        (document.getLong("requiredProgress") ?: 0L).toInt()
+                    } else {
+                        finishCountField.toInt()
+                    }
+                    val complete = document.getBoolean("complete") ?: false
+
+                    if (currentProgress + 1 <= target) {
+                        val newProgress = currentProgress + 1
+                        val jsonObject = JSONObject().apply {
+                            put("userId", userId)
+                            put("achievementId", achievementId)
+                            put("progress", newProgress)
+                            put("finishCount", target)
+                            put("complete", complete)
+                        }
+                        sendAchievementUpdate(jsonObject)
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error getting achievement ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun sendAchievementUpdate(jsonObject: JSONObject) {
+        val jsonString = jsonObject.toString()
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+        val requestBody = jsonString.toRequestBody(mediaType)
+        val request = Request.Builder()
+            .url(updateAchievementUrl)
+            .post(requestBody)
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@WorkoutList, "Achievement update failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                runOnUiThread {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@WorkoutList, "Achievement updated successfully", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
     }
 }
