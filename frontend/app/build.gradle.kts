@@ -10,6 +10,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId = "com.example.homepage"
         minSdk = 24
         targetSdk = 35
@@ -38,6 +39,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.code.gson:gson:2.8.9")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation (platform("com.google.firebase:firebase-bom:32.7.3")) // Check latest version
     implementation ("com.google.firebase:firebase-functions-ktx")

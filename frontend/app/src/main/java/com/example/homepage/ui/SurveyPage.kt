@@ -22,18 +22,18 @@ class SurveyPage : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_survey_page)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_signup)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val etEmail = findViewById<EditText>(R.id.email)
-        val etFirstName = findViewById<EditText>(R.id.Firstname)
-        val etLastName = findViewById<EditText>(R.id.Lastname)
-        val etDOB = findViewById<EditText>(R.id.DOB)
-        val etPassword = findViewById<EditText>(R.id.et_password)
-        val btnSubmit = findViewById<Button>(R.id.buttonSubmit)
+        val etEmail = findViewById<EditText>(R.id.et_signup_email)
+        val etFirstName = findViewById<EditText>(R.id.et_signup_firstname)
+        val etLastName = findViewById<EditText>(R.id.et_signup_lastname)
+        val etDOB = findViewById<EditText>(R.id.et_signup_dob)
+        val etPassword = findViewById<EditText>(R.id.et_signup_password)
+        val btnSubmit = findViewById<Button>(R.id.btn_signup_submit)
 
         btnSubmit.setOnClickListener {
             val email = etEmail.text.toString().trim()

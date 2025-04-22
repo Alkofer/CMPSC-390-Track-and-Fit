@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import com.example.homepage.Leaderboard
 import com.example.homepage.R
@@ -26,30 +27,30 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btn_push).setOnClickListener { launchWorkoutList("Push", userId) }
         findViewById<Button>(R.id.btn_pull).setOnClickListener { launchWorkoutList("Pull", userId) }
         findViewById<Button>(R.id.btn_legs).setOnClickListener { launchWorkoutList("Legs", userId) }
-        val leaderboardButton = findViewById<Button>(R.id.leaderboard)
+        val leaderboardButton = findViewById<ImageButton>(R.id.leaderboard)
         leaderboardButton.setOnClickListener {
             val intent = Intent(this, Leaderboard::class.java)
             startActivity(intent)
         }
 
-        val achievementsButton = findViewById<Button>(R.id.achievements)
+        val achievementsButton = findViewById<ImageButton>(R.id.achievements)
         achievementsButton.setOnClickListener {
-            val intent = Intent(this, Achievement::class.java)
+            val intent = Intent(this, AchievementsActivity::class.java)
             startActivity(intent)
         }
 
 
-        val blacklistButton = findViewById<Button>(R.id.blacklist)
+        val blacklistButton = findViewById<ImageButton>(R.id.blacklist)
         blacklistButton.setOnClickListener {
             val intent = Intent(this, RemoveBlacklist::class.java)
             startActivity(intent)
         }
 
 
-        val profileButton = findViewById<Button>(R.id.btn_profile)
+        val profileButton: ImageButton = findViewById(R.id.btn_profile)
         profileButton.setOnClickListener {
             val intent = Intent(this, Profile::class.java)
-            intent.putExtra("userId", userId) // pass correct userId
+            intent.putExtra("userId", userId)
             startActivity(intent)
         }
 

@@ -1,165 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_signup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#32022E"
-    tools:context=".ui.SurveyPage">
+    android:background="@drawable/profilebkg"
+    tools:context=".ui.SignUpActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+    <!-- Scroll container so keyboard won't cut off fields -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Email Input -->
-        <TextView
-            android:id="@+id/Welcome"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text="Welcome to Track and Fit!"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
-
-
-        <EditText
-            android:id="@+id/editTextText7"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="29sp"
-            android:text="Please Complete the Survey"/>
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <EditText
-            android:id="@+id/emailtext"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:textColor="@color/white"
-            android:inputType="text"
-            android:textSize="25dp"
-            android:text="Enter Email:" />
+            <!-- Header -->
+            <TextView
+                android:id="@+id/tvSignUpHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create Your Account"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="16dp"/>
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="431dp"
-            android:layout_height="49dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Enter Email"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#CCCCCC" />
+            <!-- Card holding all inputs -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
 
-        <!-- Firstname Input -->
-        <EditText
-            android:id="@+id/firstnametext"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="25dp"
-            android:text="Enter First Name:"
-            android:textColor="@color/white"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
 
-        <EditText
-            android:id="@+id/Firstname"
-            android:layout_width="426dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Enter First Name"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#CCCCCC" />
+                    <!-- Email -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_signup_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Lastname Input -->
-        <EditText
-            android:id="@+id/lastnametext"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="25dp"
-            android:text="Enter Last Name:"
-            android:textColor="@color/white"/>
+                    <!-- First Name -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="First Name"
+                        android:layout_marginTop="16dp"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_signup_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/Lastname"
-            android:layout_width="431dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Enter Last Name"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#CCCCCC" />
+                    <!-- Last Name -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Last Name"
+                        android:layout_marginTop="16dp"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_signup_lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- DOB Input -->
-        <EditText
-            android:id="@+id/DOBtext"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="25dp"
-            android:text="Enter Date of Birth:"
-            android:textColor="@color/white"/>
+                    <!-- Date of Birth -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Date of Birth"
+                        android:layout_marginTop="16dp"
+                        app:boxBackgroundMode="outline">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_signup_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="date"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/DOB"
-            android:layout_width="428dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Enter Date of Birth"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#CCCCCC" />
+                    <!-- Password -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:layout_marginTop="16dp"
+                        app:boxBackgroundMode="outline"
+                        app:passwordToggleEnabled="true">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_signup_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Weight Input -->
+                    <!-- Submit -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_signup_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:backgroundTint="#6C5B7B"
+                        android:text="Sign Up"
+                        android:textColor="#FFFFFF"/>
 
-        <!-- Password Input -->
-        <EditText
-            android:id="@+id/passwordtext"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="25dp"
-            android:text="Enter Password:"
-            android:textColor="@color/white"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/et_password"
-            android:layout_width="428dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Enter Password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:textColorHint="#CCCCCC" />
-
-        <Button
-            android:id="@+id/buttonSubmit"
-            android:layout_width="157dp"
-            android:layout_height="59dp"
-            android:layout_gravity="center"
-            android:text="Submit Survey"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="427dp" />
-
-    </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
