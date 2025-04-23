@@ -25,7 +25,7 @@ class Profile : AppCompatActivity() {
         val profileFName = findViewById<TextView>(R.id.profileFirstName)
         val profileLName = findViewById<TextView>(R.id.profileLastName)
         val profileEmail = findViewById<TextView>(R.id.profileEmail)
-        val profileUserId = findViewById<TextView>(R.id.titleUsername)
+        val profileUserId = findViewById<TextView>(R.id.friendCode)
         //val profileUsername = findViewById<TextView>(R.id.profileUsername)
         val profileBio = findViewById<TextView>(R.id.bioEditText)
         val editButton = findViewById<TextView>(R.id.editButton)
@@ -55,13 +55,14 @@ class Profile : AppCompatActivity() {
                 val lastName = document.getString("lastName") ?: "N/A"
                 val bio = document.getString("bio") ?: "No bio added yet."
                 val dob = document.getString("dob") ?: "N/A"
+                val userCode = document.getString("userCode") ?: "N/A"
 
 
                 profileName.text = "$firstName $lastName"
                 profileFName.text = firstName
                 profileLName.text = lastName
                 //profileUsername.text = userId
-                profileUserId.text = userId
+                profileUserId.text = userCode
                 profileBio.text = bio
                 profileDOB.text = dob
 
@@ -86,7 +87,7 @@ class Profile : AppCompatActivity() {
             }
                 .addOnFailureListener {
                     Toast.makeText(this, "Failed to update bio", Toast.LENGTH_SHORT).show()
-            }
+                }
         }
 
     }

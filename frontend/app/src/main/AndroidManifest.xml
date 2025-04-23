@@ -19,6 +19,9 @@
             android:name=".ui.Profile"
             android:exported="false" />
         <activity
+            android:name=".ui.FriendsList"
+            android:exported="false" />
+        <activity
             android:name=".ui.RemoveBlacklist"
             android:exported="false" />
         
