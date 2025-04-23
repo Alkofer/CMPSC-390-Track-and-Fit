@@ -54,6 +54,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val socialButton: ImageButton = findViewById(R.id.social)
+        socialButton.setOnClickListener {
+            val intent = Intent(this, FriendsList::class.java)
+            startActivity(intent)
+        }
+
 
 
     }

@@ -108,10 +108,10 @@ class FriendsList : AppCompatActivity() {
 
         val addFriend = hashMapOf(
             val email =
-            val firstName = //get first name of target user
-            val lastName =  //get last name of target user
-            val friendCode = // get friend code of target user
-            val userID = userId
+        val firstName = //get first name of target user
+        val lastName =  //get last name of target user
+        val friendCode = // get friend code of target user
+        val userID = userId
         )
 
 
