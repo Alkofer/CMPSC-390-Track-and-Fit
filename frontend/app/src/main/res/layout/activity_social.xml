@@ -7,8 +7,8 @@
     android:background="@drawable/socialbkg">
 
     <LinearLayout
-        android:layout_width="394dp"
-        android:layout_height="459dp"
+        android:layout_width="398dp"
+        android:layout_height="451dp"
         android:layout_marginStart="9dp"
         android:layout_marginTop="304dp"
         android:layout_marginEnd="9dp"
@@ -36,7 +36,6 @@
                 android:layout_marginEnd="0dp"
                 android:layout_weight="0"
                 android:fontFamily="sans-serif"
-                android:text="Sample Username"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -48,17 +47,11 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/add1"
+                    android:id="@+id/view1"
                     android:layout_width="116dp"
-                    android:layout_height="50dp"
-                    android:text="Add+" />
+                    android:layout_height="65dp"
+                    android:text="View Profile" />
 
-                <Button
-                    android:id="@+id/decline1"
-                    android:layout_width="116dp"
-                    android:layout_height="50dp"
-                    android:text="Decline"
-                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
@@ -82,7 +75,6 @@
                 android:layout_width="254dp"
                 android:layout_height="46dp"
                 android:fontFamily="sans-serif"
-                android:text="Sample Username"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -93,17 +85,11 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/add2"
+                    android:id="@+id/view2"
                     android:layout_width="116dp"
-                    android:layout_height="50dp"
-                    android:text="Add+" />
+                    android:layout_height="65dp"
+                    android:text="View Profile" />
 
-                <Button
-                    android:id="@+id/decline2"
-                    android:layout_width="116dp"
-                    android:layout_height="50dp"
-                    android:text="Decline"
-                    android:visibility="gone" />
             </LinearLayout>
 
         </LinearLayout>
@@ -129,7 +115,6 @@
                 android:layout_height="46dp"
                 android:layout_weight="0"
                 android:fontFamily="sans-serif"
-                android:text="Sample Username"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
@@ -141,18 +126,11 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/add3"
+                    android:id="@+id/view3"
                     android:layout_width="116dp"
-                    android:layout_height="50dp"
-                    android:text="Add+"
+                    android:layout_height="65dp"
+                    android:text="View Profile"
                     tools:ignore="MissingConstraints" />
-
-                <Button
-                    android:id="@+id/decline3"
-                    android:layout_width="116dp"
-                    android:layout_height="50dp"
-                    android:text="Decline"
-                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -165,125 +143,76 @@
             android:layout_margin="10dp"
             android:alpha="0.5"
             android:background="@color/lavender" />
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="116dp"
-        android:layout_marginTop="128dp"
-        android:orientation="horizontal"
+    <TextView
+        android:id="@+id/friendsTitle"
+        android:layout_width="195dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="108dp"
+        android:text="Search Users"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:id="@+id/friendsbtn"
-            android:layout_width="113dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="545dp"
-            android:text="Friends" />
-
-        <TextView
-            android:id="@+id/friendsTitle"
-            android:layout_width="160dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="552dp"
-            android:text="Add Friends"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:typeface="sans" />
-
-        <Button
-            android:id="@+id/requestbtn"
-            android:layout_width="113dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="545dp"
-            android:text="Requests"
-            app:rippleColor="#673AB7"
-            app:strokeColor="#830707" />
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="AutoCompleteTextView" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="167dp"
         android:layout_height="118dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="611dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="122dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/hand_with_a_dumbbell" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="305dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="228dp"
+        app:layout_constraintStart_toEndOf="@+id/searchbtn"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/searchBar"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="247dp"
+        android:layout_marginTop="232dp"
         android:hint="Search..."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="305dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="244dp"
-        app:layout_constraintStart_toEndOf="@+id/searchbtn"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/searchbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="246dp"
-        android:layout_marginEnd="307dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="308dp"
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/socialPgBtn"
-        android:layout_width="171dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="795dp"
-        android:text="Add Friends"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/homeButton"
-        android:layout_width="94dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="15dp"
-        android:text="Home"
+        android:layout_width="235dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="776dp"
+        android:text="Back to Workout"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
