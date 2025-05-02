@@ -34,20 +34,20 @@ class PublicProfile : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
 
         val intent = intent
-        val targetUserCode = intent.getStringExtra("targetUserId")
+        val UserCode = intent.getStringExtra("UserCode")
         //val targetUser = FirebaseAuth.getInstance().currentUser
 
 //        if (targetUser != null) {
 //            profileEmail.text = targetUser.email
 //        }
 
-        if (targetUserCode == null) {
+        if (UserCode == null) {
             Toast.makeText(this, "Target Missing user ID", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
-        val userRef = db.collection("publicUsers").document(targetUserCode)
+        val userRef = db.collection("publicProfile").document(UserCode)
 
         userRef.get().addOnSuccessListener { document ->
             if (document.exists()) {

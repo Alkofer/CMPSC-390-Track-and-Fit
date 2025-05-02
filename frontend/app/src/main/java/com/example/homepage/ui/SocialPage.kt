@@ -93,7 +93,7 @@ class SocialPage : AppCompatActivity() {
 
             val intent = Intent(applicationContext, PublicProfile::class.java)
 
-            intent.putExtra("targetUserId", searchFriendCode)
+            intent.putExtra("UserCode", searchFriendCode)
 
             startActivity(intent)
 
