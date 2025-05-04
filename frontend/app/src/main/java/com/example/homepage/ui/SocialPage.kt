@@ -5,6 +5,8 @@ import android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,24 +28,14 @@ class SocialPage : AppCompatActivity() {
 
 
         db = FirebaseFirestore.getInstance()
-        //val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         val userRef = db.collection("publicUsers")
 
         val username1 = findViewById<TextView>(R.id.user1)
-        val username2 = findViewById<TextView>(R.id.user2)
-        val username3 = findViewById<TextView>(R.id.user3)
-
-
 
         val viewProfile1 = findViewById<TextView>(R.id.view1)
-        val viewProfile2 = findViewById<TextView>(R.id.view2)
-        val viewProfile3 = findViewById<TextView>(R.id.view3)
 
-        //update friend list
         val searchEditText = findViewById<EditText>(R.id.searchBar)
-        //perform a query using friend code
         val search = findViewById<Button>(R.id.searchbtn)
-        // activate search
 
         val homeBtn = findViewById<Button>(R.id.homeButton)
 
@@ -58,7 +50,9 @@ class SocialPage : AppCompatActivity() {
             Log.d(TAG, "Search button clicked")
 
             val searchFriends = searchEditText.text.toString()
-
+            if(viewProfile1.visibility == INVISIBLE){
+                viewProfile1.visibility = VISIBLE
+            }
             userRef.whereEqualTo("userCode", searchFriends)
                 .limit(1)
                 .get()
