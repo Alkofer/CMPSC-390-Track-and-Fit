@@ -19,12 +19,12 @@
             android:name=".ui.Profile"
             android:exported="false" />
         <activity
-            android:name=".ui.FriendsList"
-            android:exported="false" />
-        <activity
             android:name=".ui.RemoveBlacklist"
             android:exported="false" />
-        
+        <activity android:name=".ui.SocialPage"
+            android:exported="false" />
+        <activity android:name=".ui.PublicProfile"
+            android:exported="false" />
         <activity
             android:name=".Leaderboard"
             android:exported="false" />
