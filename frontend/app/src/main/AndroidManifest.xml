@@ -14,8 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomePage"
         tools:targetApi="31">
+        <activity android:name=".ui.AchievementsActivity" />
         <activity
             android:name=".ui.Profile"
+            android:exported="false" />
+        <activity
+            android:name=".ui.FriendsList"
             android:exported="false" />
         <activity
             android:name=".ui.RemoveBlacklist"
