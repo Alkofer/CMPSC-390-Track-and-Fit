@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Home Page</string>
     <string name="email">Email</string>
+    <string name="logo_desc">App logo</string>
+    <string name="search_user_code">Search User Code</string>
+    <string name="enter_code">Enter code</string>
+    <string name="search">Search</string>
+    <string name="view_profile">View Profile</string>
+    <string name="back_to_workout">Back to Workout</string>
 </resources>

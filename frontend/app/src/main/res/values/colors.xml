@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#8692f7</color>
     <color name="grey">#808080</color>
+    <color name="gray_300">#BDBDBD</color>
+    <color name="gray_200">#EEEEEE</color>
 </resources>
