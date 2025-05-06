@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.IgnoreExtraProperties
 import com.google.firebase.firestore.Query
 
 class Leaderboard : AppCompatActivity() {
@@ -16,7 +18,7 @@ class Leaderboard : AppCompatActivity() {
     private lateinit var leaderboardRecyclerView: RecyclerView
     private lateinit var leaderboardAdapter: LeaderboardAdapter
 
-
+    @IgnoreExtraProperties
     data class User(
         val firstName: String = "",
         val lastName: String = "",
@@ -27,7 +29,8 @@ class Leaderboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
-
+        Log.d(TAG, "onCreate started")
+        Toast.makeText(this, "Leaderboard started", Toast.LENGTH_SHORT).show()
 
         leaderboardRecyclerView = findViewById(R.id.leaderboardRecyclerView)
         leaderboardRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -41,19 +44,25 @@ class Leaderboard : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         val userRef = db.collection("publicUsers").orderBy("progressCount", Query.Direction.DESCENDING)
 
-
+        Log.d(TAG, "Preparing Firestore query")
         userRef.get()
             .addOnSuccessListener { documents ->
+                Log.d(TAG, "Firestore success: ${documents.size()} documents found")
                 for (document in documents) {
-                    val user = document.toObject(User::class.java)
+                    val firstName = document.getString("firstName") ?: ""
+                    val lastName = document.getString("lastName") ?: ""
+                    val progressCount = document.getLong("progressCount")?.toInt() ?: 0
+
+                    val user = User(firstName, lastName, progressCount)
                     userList.add(user)
+                    Log.d(TAG, "Parsed user: $user")
                 }
 
                 leaderboardAdapter.notifyDataSetChanged()
-                Log.d(TAG, "Retrieved ${userList.size} users")
+                Log.d(TAG, "Final userList size: ${userList.size}")
             }
             .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents: ", exception)
+                Log.e(TAG, "Error getting documents", exception)
             }
 
 

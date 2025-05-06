@@ -35,9 +35,4 @@ class LeaderboardAdapter(private var users: MutableList<Leaderboard.User>) :
 
     override fun getItemCount() = users.size
 
-    fun updateData(newUsers: List<Leaderboard.User>, statType: String) {
-        users.clear()
-        users.addAll(newUsers)
-        notifyDataSetChanged()
-    }
 }
