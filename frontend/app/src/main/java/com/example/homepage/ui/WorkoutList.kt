@@ -25,6 +25,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okio.IOException
 import org.json.JSONObject
+import com.example.homepage.ui.Achievements
 
 
 class WorkoutList : AppCompatActivity(), WorkoutAdapter.OnWorkoutActionListener {
@@ -131,11 +132,12 @@ class WorkoutList : AppCompatActivity(), WorkoutAdapter.OnWorkoutActionListener 
     }
 
     private fun finishRoutine() {
-        fetchUserAchievements()
 
-        updateUserAchievementProgress("first_workout")
-        updateUserAchievementProgress("first_steps")
-        updateUserAchievementProgress("second_workout")
+        val ach = Achievements(this)
+        ach.fetchUserAchievements(userId,getAchievementsUrl)
+        ach.updateUserAchievementProgress(userId, "first_workout", updateAchievementUrl)
+        ach.updateUserAchievementProgress(userId, "first_steps", updateAchievementUrl)
+        ach.updateUserAchievementProgress(userId, "second_workout", updateAchievementUrl)
 
         if (dislikedWorkouts.isEmpty()) {
             finish()
@@ -149,91 +151,5 @@ class WorkoutList : AppCompatActivity(), WorkoutAdapter.OnWorkoutActionListener 
             }
     }
 
-    private fun fetchUserAchievements() {
-        val url = "$getAchievementsUrl?userId=$userId"
-        val request = Request.Builder()
-            .url(url)
-            .get()
-            .build()
 
-        OkHttpClient().newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val jsonData = response.body?.string()
-                if (response.isSuccessful) {
-                    Log.d("WorkoutList", "Achievements JSON: $jsonData")
-                } else {
-                    runOnUiThread {
-                        Toast.makeText(this@WorkoutList, "Error: ${response.code}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
-    }
-
-    private fun updateUserAchievementProgress(achievementId: String) {
-        val achievementDocRef = Firebase.firestore
-            .collection("users")
-            .document(userId)
-            .collection("achievements")
-            .document(achievementId)
-
-        achievementDocRef.get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val currentProgress = (document.getLong("progress") ?: 0L).toInt()
-                    val finishCountField = document.getLong("finishCount") ?: 0L
-                    val target = if (finishCountField == 0L) {
-                        (document.getLong("requiredProgress") ?: 0L).toInt()
-                    } else {
-                        finishCountField.toInt()
-                    }
-                    val complete = document.getBoolean("complete") ?: false
-
-                    if (currentProgress + 1 <= target) {
-                        val newProgress = currentProgress + 1
-                        val jsonObject = JSONObject().apply {
-                            put("userId", userId)
-                            put("achievementId", achievementId)
-                            put("progress", newProgress)
-                            put("finishCount", target)
-                            put("complete", complete)
-                        }
-                        sendAchievementUpdate(jsonObject)
-                    }
-                }
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Error getting achievement ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    private fun sendAchievementUpdate(jsonObject: JSONObject) {
-        val jsonString = jsonObject.toString()
-        val mediaType = "application/json; charset=utf-8".toMediaType()
-        val requestBody = jsonString.toRequestBody(mediaType)
-        val request = Request.Builder()
-            .url(updateAchievementUrl)
-            .post(requestBody)
-            .build()
-
-        OkHttpClient().newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@WorkoutList, "Achievement update failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                runOnUiThread {
-                    if (response.isSuccessful) {
-                        Toast.makeText(this@WorkoutList, "Achievement updated successfully", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
-    }
 }
