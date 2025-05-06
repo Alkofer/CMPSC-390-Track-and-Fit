@@ -1,6 +1,8 @@
 package com.example.homepage.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +24,12 @@ class RemoveBlacklist : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_remove_blacklist)
+
+        val btnReturnHome = findViewById<Button>(R.id.btnReturnHome)
+        btnReturnHome.setOnClickListener{
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
 
         recyclerView = findViewById(R.id.blacklistRecyclerView)
         adapter = BlacklistAdapter(workoutList) { workout ->

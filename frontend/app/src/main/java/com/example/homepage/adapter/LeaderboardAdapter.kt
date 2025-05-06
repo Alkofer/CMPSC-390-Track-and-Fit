@@ -7,7 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.homepage.model.User
 
-class LeaderboardAdapter(private var users: List<User>) :
+data class User(
+    val firstName: String = "",
+    val lastName: String = "",
+    val progressCount: Int = 0
+)
+
+class LeaderboardAdapter(private var users: MutableList<Leaderboard.User>) :
     RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,14 +29,10 @@ class LeaderboardAdapter(private var users: List<User>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = users[position]
-        holder.nameTextView.text = user.name
-        holder.statTextView.text = user.mostActive.toString() // Default stat
+        holder.nameTextView.text = "${user.firstName} ${user.lastName}"
+        holder.statTextView.text = user.progressCount.toString()
     }
 
     override fun getItemCount() = users.size
 
-    fun updateData(newUsers: List<User>, statType: String) {
-        users = newUsers
-        notifyDataSetChanged()
-    }
 }

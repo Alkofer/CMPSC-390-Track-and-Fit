@@ -1,61 +1,72 @@
 package com.example.homepage
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.widget.Button
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.homepage.model.User
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.IgnoreExtraProperties
+import com.google.firebase.firestore.Query
 
 class Leaderboard : AppCompatActivity() {
 
+    private lateinit var db: FirebaseFirestore
     private lateinit var leaderboardRecyclerView: RecyclerView
     private lateinit var leaderboardAdapter: LeaderboardAdapter
 
-    private val users = listOf(
-        User("Alice", 120, 50, 30),
-        User("Bob", 100, 70, 40),
-        User("Charlie", 150, 60, 20),
-        User("David", 90, 80, 50)
+    @IgnoreExtraProperties
+    data class User(
+        val firstName: String = "",
+        val lastName: String = "",
+        val progressCount: Int = 0
     )
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaderboard)
+        Log.d(TAG, "onCreate started")
+        Toast.makeText(this, "Leaderboard started", Toast.LENGTH_SHORT).show()
 
         leaderboardRecyclerView = findViewById(R.id.leaderboardRecyclerView)
         leaderboardRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        leaderboardAdapter = LeaderboardAdapter(users)
+
+        val userList = mutableListOf<User>()
+        leaderboardAdapter = LeaderboardAdapter(userList)
         leaderboardRecyclerView.adapter = leaderboardAdapter
 
-        val mostActive = findViewById<Button>(R.id.MostActBtn)
-        val mostWorkouts = findViewById<Button>(R.id.workoutsBtn)
-        val longestStreak = findViewById<Button>(R.id.LongStreakBtn)
 
-        mostActive.setOnClickListener {
-            updateLeaderboard("mostActive")
-        }
-        mostWorkouts.setOnClickListener {
-            updateLeaderboard("mostWorkouts")
-        }
-        longestStreak.setOnClickListener {
-            updateLeaderboard("longestStreak")
-        }
+        db = FirebaseFirestore.getInstance()
+        val userRef = db.collection("publicUsers").orderBy("progressCount", Query.Direction.DESCENDING)
 
-        // Default leaderboard
-        updateLeaderboard("mostActive")
+        Log.d(TAG, "Preparing Firestore query")
+        userRef.get()
+            .addOnSuccessListener { documents ->
+                Log.d(TAG, "Firestore success: ${documents.size()} documents found")
+                for (document in documents) {
+                    val firstName = document.getString("firstName") ?: ""
+                    val lastName = document.getString("lastName") ?: ""
+                    val progressCount = document.getLong("progressCount")?.toInt() ?: 0
+
+                    val user = User(firstName, lastName, progressCount)
+                    userList.add(user)
+                    Log.d(TAG, "Parsed user: $user")
+                }
+
+                leaderboardAdapter.notifyDataSetChanged()
+                Log.d(TAG, "Final userList size: ${userList.size}")
+            }
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "Error getting documents", exception)
+            }
+
+
+
     }
 
-    private fun updateLeaderboard(type: String) {
-        val sortedUsers = when (type) {
-            "mostActive" -> users.sortedByDescending { it.mostActive }
-            "mostWorkouts" -> users.sortedByDescending { it.mostWorkouts }
-            "longestStreak" -> users.sortedByDescending { it.longestStreak }
-            else -> users
-        }
-        leaderboardAdapter.updateData(sortedUsers, type)
-    }
 }

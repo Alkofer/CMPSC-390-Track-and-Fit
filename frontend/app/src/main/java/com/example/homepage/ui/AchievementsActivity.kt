@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.homepage.R
 import com.example.homepage.adapter.AchievementAdapter
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +38,7 @@ data class AchievementResponse(
 )
 
 class AchievementsActivity : AppCompatActivity() {
+    private lateinit var db: FirebaseFirestore
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AchievementAdapter
@@ -52,6 +55,26 @@ class AchievementsActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         loadAchievements()
+
+        db = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        val userRef = db.collection("publicUsers").document(userId.toString())
+
+        userRef.get().addOnSuccessListener { document ->
+            if (document.exists()) {
+                val finishCount = document.getString("finishCount") ?: "N/A"
+
+                val achievementData = mapOf(
+                    "finishCount" to finishCount
+                )
+
+                syncAchievementsLocally(achievementData, userId.toString())
+            } else {
+                Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed to load user profile", Toast.LENGTH_SHORT).show()
+        }
 
         val buttonBack: Button = findViewById(R.id.buttonBack)
         buttonBack.setOnClickListener {
@@ -97,4 +120,19 @@ class AchievementsActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun syncAchievementsLocally(achievementData: Map<String, Any>, userId: String) {
+        val publicUserRef = FirebaseFirestore.getInstance()
+            .collection("publicUsers")
+            .document(userId)
+
+        publicUserRef.set(achievementData, SetOptions.merge())
+            .addOnSuccessListener {
+                Toast.makeText(this, "Achievements synced", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Failed to sync Achievements: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 }
